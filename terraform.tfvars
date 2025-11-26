@@ -1,1 +1,1 @@
-vpc_name = "vpc-terraform-v2-feh"
+vpc_name = "vpc-teste"

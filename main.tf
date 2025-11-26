@@ -1,8 +1,8 @@
-
 variable "vpc_name" {
   type    = string
-  default = "vpc-terra"
+  default = "vpc-terraform-v2"
 }
+
 resource "aws_vpc" "minha_vpc" {
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
@@ -36,22 +36,22 @@ resource "aws_subnet" "private_subnet_1a" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "priv-subnet-1A"
+    Name = "priv-subnet-1a"
   }
 }
 
 ## Cria a tabela de rota da subnet privada 1a
 resource "aws_route_table" "priv_rt_1a" {
   vpc_id = aws_vpc.minha_vpc.id
-  
+
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat_gw_1a.id
   }
-  
+
 
   tags = {
-    Name = "priv-rt-1a"
+    Name = "priv-rt-1A"
   }
 }
 
@@ -76,7 +76,7 @@ resource "aws_subnet" "public_subnet_1a" {
 ## Cria a tabela de rota da subnet publica 1a
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.minha_vpc.id
-  
+
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
@@ -104,7 +104,7 @@ resource "aws_internet_gateway" "igw" {
 
 ## Cria um ip publico para o nat-gateway
 resource "aws_eip" "nat_gw_ip_1a" {
-  domain           = "vpc"
+  domain = "vpc"
 }
 
 ## Cria um nat gateway utilizando um ip publico
@@ -137,12 +137,12 @@ resource "aws_subnet" "private_subnet_1b" {
 ## Cria a tabela de rota da subnet privada 1a
 resource "aws_route_table" "priv_rt_1b" {
   vpc_id = aws_vpc.minha_vpc.id
-  
+
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat_gw_1b.id
   }
-  
+
 
   tags = {
     Name = "priv-rt-1b"
@@ -176,7 +176,7 @@ resource "aws_route_table_association" "pub_1b_associate" {
 
 ## Cria um ip publico para o nat-gateway
 resource "aws_eip" "nat_gw_ip_1b" {
-  domain           = "vpc"
+  domain = "vpc"
 }
 
 ## Cria um nat gateway utilizando um ip publico

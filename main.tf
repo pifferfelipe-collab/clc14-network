@@ -1,7 +1,7 @@
 
 variable "vpc_name" {
   type    = string
-  default = "vpc-teste"
+  default = "vpc-terraform"
 }
 resource "aws_vpc" "minha_vpc" {
   cidr_block       = "10.0.0.0/16"
@@ -36,7 +36,7 @@ resource "aws_subnet" "private_subnet_1a" {
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "priv-subnet-1A-FEG"
+    Name = "priv-subnet-1A"
   }
 }
 
